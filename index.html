@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Siti Mukaromah</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     01 — OPENING
+===================================================== -->
+
+<main class="scene active" id="scene1">
+
+    <div class="opening">
+
+        <div class="system-label">
+            <span class="status-dot"></span>
+            Siti Mukaromah / PERSONAL SYSTEM
+        </div>
+
+        <div class="opening-title">
+            <span>A LITTLE SOMETHING FOR</span>
+            <h1 style="font-size: 50px;">Siti Mukaromah</h1>
+            <div class="date-line">24 . 08</div>
+        </div>
+
+        <div class="terminal">
+            <span class="prompt">></span>
+            <span id="typingText"></span>
+            <span class="cursor"></span>
+        </div>
+
+        <div class="loading">
+
+            <div class="loading-head">
+                <span>INITIALIZING</span>
+                <span id="loadingPercent">00</span>
+            </div>
+
+            <div class="loading-track">
+                <div id="loadingBar"></div>
+            </div>
+
+        </div>
+
+        <button
+            class="line-button"
+            id="enterButton"
+            onclick="startExperience()"
+            disabled
+        >
+            ENTER
+            <span>→</span>
+        </button>
+
+    </div>
+
+    <div class="corner-label">
+        PERSONAL EDITION / 2026
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     02 — IDENTIFICATION
+===================================================== -->
+
+<main class="scene" id="scene2">
+
+    <div class="identification">
+
+        <div class="section-number">01 / 16</div>
+
+        <div class="eyebrow">IDENTIFICATION PROTOCOL</div>
+
+        <h2>PERSONAL<br><em>FILE</em></h2>
+
+        <p class="subtext">
+            Scanning birthday records...
+        </p>
+
+        <div class="id-card" id="idCard">
+
+            <div class="scan-beam"></div>
+
+            <div class="id-top">
+                <span>PERSONAL ARCHIVE</span>
+                <span>24.08</span>
+            </div>
+
+            <div class="portrait-box">
+                <div class="portrait-lines"></div>
+                <div class="portrait-silhouette"></div>
+            </div>
+
+            <div class="id-details">
+
+                <span>SUBJECT</span>
+                <strong>Siti Mukaromah</strong>
+
+                <div class="id-meta">
+                    <span>BIRTHDAY</span>
+                    <b>24.08</b>
+                </div>
+
+            </div>
+
+            <div class="scan-status">
+                <span class="status-circle"></span>
+                <span id="scanStatus">SCANNING</span>
+            </div>
+
+        </div>
+
+        <div class="scan-message" id="scanMessage">
+            INITIALIZING SCAN...
+        </div>
+
+        <div class="verification" id="verificationText"></div>
+
+        <button
+            class="line-button hidden"
+            id="identityContinue"
+            onclick="nextScene()"
+        >
+            CONTINUE
+            <span>→</span>
+        </button>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     03 — GAME 1 MEMORY MATCH
+===================================================== -->
+
+<main class="scene" id="scene3">
+
+    <div class="game-container">
+
+        <div class="section-number">02 / 16</div>
+
+        <div class="game-label">MINI GAME 01</div>
+
+        <h2>MEMORY<br><em>MATCH</em></h2>
+
+        <p class="game-description">
+            Let's see if your memory still works.
+            Find all the matching pairs.
+        </p>
+
+        <div class="memory-grid" id="memoryGrid"></div>
+
+        <div class="game-feedback" id="memoryFeedback">
+            0 / 5 MATCHED
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     04 — GAME 2 FIND DIFFERENCE
+===================================================== -->
+
+<main class="scene" id="scene4">
+
+    <div class="game-container">
+
+        <div class="section-number">03 / 16</div>
+
+        <div class="game-label">MINI GAME 02</div>
+
+        <h2>FIND THE<br><em>DIFFERENCE</em></h2>
+
+        <p class="game-description">
+            Something changed.
+            Find the three little differences.
+        </p>
+
+        <div class="difference-board">
+
+            <div class="difference-picture" id="pictureLeft">
+                <div class="scene-art">
+                    <div class="art-moon"></div>
+                    <div class="art-cup"></div>
+                    <div class="art-book"></div>
+                    <div class="art-flower"></div>
+                    <div class="art-star star-a"></div>
+                    <div class="art-star star-b"></div>
+                </div>
+            </div>
+
+            <div class="difference-picture" id="pictureRight">
+                <div class="scene-art">
+                    <div class="art-moon"></div>
+                    <div class="art-cup diff-one"></div>
+                    <div class="art-book diff-two"></div>
+                    <div class="art-flower diff-three"></div>
+                    <div class="art-star star-a"></div>
+                    <div class="art-star star-b"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="difference-hints">
+            <span>FIND</span>
+            <b id="differenceCount">0 / 3</b>
+        </div>
+
+        <div class="difference-options">
+            <button onclick="findDifference(1)">①</button>
+            <button onclick="findDifference(2)">②</button>
+            <button onclick="findDifference(3)">③</button>
+        </div>
+
+        <div class="game-feedback" id="differenceFeedback"></div>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     05 — GAME 3 UNSCRAMBLE
+===================================================== -->
+
+<main class="scene" id="scene5">
+
+    <div class="game-container">
+
+        <div class="section-number">04 / 16</div>
+
+        <div class="game-label">MINI GAME 03</div>
+
+        <h2>FILE<br><em>CORRUPTED</em></h2>
+
+        <p class="game-description">
+            The system lost the file name.
+            Put everything back in order.
+        </p>
+
+        <div class="scramble-title">
+            RESTORE:
+            <strong id="scrambleTarget">SITONG</strong>
+        </div>
+
+        <div class="scramble-slots" id="scrambleSlots"></div>
+
+        <div class="scramble-letters" id="scrambleLetters"></div>
+
+        <div class="game-feedback" id="scrambleFeedback"></div>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     06 — GAME 4 FIND RIGHT OBJECT
+===================================================== -->
+
+<main class="scene" id="scene6">
+
+    <div class="game-container">
+
+        <div class="section-number">05 / 16</div>
+
+        <div class="game-label">MINI GAME 04</div>
+
+        <h2>VISUAL<br><em>SEARCH</em></h2>
+
+        <p class="game-description">
+            Find the object requested by the system.
+            Three rounds.
+        </p>
+
+        <div class="target-box">
+
+            <span>TARGET</span>
+            <strong id="targetName">FLOWER</strong>
+
+        </div>
+
+        <div class="object-arena" id="objectArena"></div>
+
+        <div class="round-counter" id="roundCounter">
+            ROUND 1 / 3
+        </div>
+
+        <div class="game-feedback" id="objectFeedback"></div>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     07 — GAME 5 PASSWORD
+===================================================== -->
+
+<main class="scene" id="scene7">
+
+    <div class="game-container password-game">
+
+        <div class="section-number">06 / 16</div>
+
+        <div class="game-label">MINI GAME 05</div>
+
+        <h2>PERSONAL<br><em>ARCHIVE</em></h2>
+
+        <p class="game-description">
+            One last lock before the birthday file opens.
+        </p>
+
+        <div class="lock-display">
+
+            <span>ACCESS CODE</span>
+
+            <div id="codeDisplay">
+                _ _ _ _
+            </div>
+
+        </div>
+
+        <div class="keypad">
+
+            <button onclick="pressKey(1)">1</button>
+            <button onclick="pressKey(2)">2</button>
+            <button onclick="pressKey(3)">3</button>
+
+            <button onclick="pressKey(4)">4</button>
+            <button onclick="pressKey(5)">5</button>
+            <button onclick="pressKey(6)">6</button>
+
+            <button onclick="pressKey(7)">7</button>
+            <button onclick="pressKey(8)">8</button>
+            <button onclick="pressKey(9)">9</button>
+
+            <button class="empty-key"></button>
+            <button onclick="pressKey(0)">0</button>
+            <button onclick="clearCode()">C</button>
+
+        </div>
+
+        <div class="game-feedback" id="codeFeedback"></div>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     08 — QUIZ INTRO
+===================================================== -->
+
+<main class="scene" id="scene8">
+
+    <div class="transition-screen">
+
+        <div class="section-number">07 / 16</div>
+
+        <div class="transition-line"></div>
+
+        <div class="transition-small">
+            MINI GAMES COMPLETE
+        </div>
+
+        <h2>
+            OH IYA...
+        </h2>
+
+        <p>
+            ada quiz singkat nih.<br>
+            jawab dulu ya wkwkwk.
+        </p>
+
+        <button class="line-button" onclick="nextScene()">
+            OKAY
+            <span>→</span>
+        </button>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     09 — QUIZ CHAT
+===================================================== -->
+
+<main class="scene" id="scene9">
+
+    <div class="quiz-container">
+
+        <div class="section-number">08 / 16</div>
+
+        <div class="game-label">FRIENDSHIP CHECK</div>
+
+        <h2>
+            Seberapa sering<br>
+            <em>kita chat?</em>
+        </h2>
+
+        <p class="game-description">
+            Be honest. The system already knows.
+        </p>
+
+        <div class="quiz-options">
+
+            <button onclick="chatAnswer(this, false)">
+                <span>A</span>
+                Setiap hari
+            </button>
+
+            <button onclick="chatAnswer(this, false)">
+                <span>B</span>
+                Tiap beberapa jam
+            </button>
+
+            <button onclick="chatAnswer(this, true)">
+                <span>C</span>
+                Kalau ada perlu / mau janjian
+            </button>
+
+            <button onclick="chatAnswer(this, false)">
+                <span>D</span>
+                Tergantung semesta
+            </button>
+
+        </div>
+
+        <div class="game-feedback" id="chatFeedback"></div>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     10 — QUIZ FOOD
+===================================================== -->
+
+<main class="scene" id="scene10">
+
+    <div class="quiz-container">
+
+        <div class="section-number">09 / 16</div>
+
+        <div class="game-label">VERY SERIOUS QUESTION</div>
+
+        <h2>
+            Siapa yang paling sering<br>
+            <em>bingung mau makan apa?</em>
+        </h2>
+
+        <p class="game-description">
+            A very important friendship question.
+        </p>
+
+        <div class="quiz-options">
+
+            <button onclick="foodAnswer(this, 'A')">
+                <span>A</span>
+                Kamu pastinya
+            </button>
+
+            <button onclick="foodAnswer(this, 'B')">
+                <span>B</span>
+                Aku sih, hehe
+            </button>
+
+            <button onclick="foodAnswer(this, 'C')">
+                <span>C</span>
+                Dua-duanya sama-sama bingung!
+            </button>
+
+        </div>
+
+        <div class="game-feedback" id="foodFeedback"></div>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     11 — BIRTHDAY CAKE
+===================================================== -->
+
+<main class="scene" id="scene11">
+
+    <div class="birthday-container">
+
+        <div class="section-number">10 / 16</div>
+
+        <div class="date-reveal">
+            <span>24</span>
+            <i>.</i>
+            <span>08</span>
+        </div>
+
+        <div class="birthday-label">
+            TODAY IS OFFICIALLY
+        </div>
+
+        <h2>YOUR DAY.</h2>
+
+        <p class="cake-instruction" id="cakeInstruction">
+            tap the cake
+        </p>
+
+        <div
+            class="cake-wrapper"
+            id="cake"
+            onclick="lightCake()"
+        >
+
+            <div class="flame-glow"></div>
+
+            <div class="flame" id="flame">
+                <div class="flame-inner"></div>
+            </div>
+
+            <div class="candle"></div>
+
+            <div class="cake-tier tier-top">
+                <div class="icing"></div>
+            </div>
+
+            <div class="cake-tier tier-middle">
+                <div class="icing"></div>
+            </div>
+
+            <div class="cake-tier tier-bottom">
+                <div class="icing"></div>
+            </div>
+
+            <div class="cake-plate"></div>
+
+        </div>
+
+        <div class="wish-text" id="wishText">
+            MAKE A WISH.
+        </div>
+
+        <button
+            class="line-button hidden"
+            id="cakeContinue"
+            onclick="nextScene()"
+        >
+            CONTINUE
+            <span>→</span>
+        </button>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     12 — MEMORY
+===================================================== -->
+
+<main class="scene" id="scene12">
+
+    <div class="memory-container">
+
+        <div class="section-number">11 / 16</div>
+
+        <div class="game-label">MEMORY ARCHIVE</div>
+
+        <h2>
+            SOMEHOW,<br>
+            <em>WE'RE STILL HERE.</em>
+        </h2>
+
+        <p class="game-description">
+            From MA, somewhere around 2020,
+            until now.
+        </p>
+
+       <div class="memory-board">
+
+    <div class="memory-card card-one">
+    <div class="photo-placeholder">
+        <img src="photos/foto1.jpg" alt="Memory 01">
+    </div>
+    <small>the beginning</small>
+</div>
+
+   <div class="memory-card card-two">
+    <div class="photo-placeholder">
+        <img src="photos/foto2.jpg" alt="Memory 02">
+    </div>
+    <small>somewhere in between</small>
+</div>
+
+    <div class="memory-card card-three">
+    <div class="photo-placeholder">
+        <img src="photos/foto3.jpg" alt="Memory 03">
+    </div>
+    <small>still us</small>
+</div>
+
+</div>
+
+        <button class="line-button" onclick="nextScene()">
+            KEEP GOING
+            <span>→</span>
+        </button>
+
+    </div>
+
+</main>
+
+<!-- =====================================================
+     13 — FLOWER
+===================================================== -->
+
+<main class="scene" id="scene13">
+
+    <div class="flower-container">
+
+        <div class="section-number">12 / 16</div>
+
+        <div class="bouquet-label">
+            ONE MORE THING
+        </div>
+
+        <div class="flower-animation">
+
+            <div class="flower-head">
+
+                <span class="petal p1"></span>
+                <span class="petal p2"></span>
+                <span class="petal p3"></span>
+                <span class="petal p4"></span>
+                <span class="petal p5"></span>
+                <span class="petal p6"></span>
+
+                <span class="flower-center"></span>
+
+            </div>
+
+            <div class="flower-stem"></div>
+
+            <span class="flower-leaf leaf-left"></span>
+            <span class="flower-leaf leaf-right"></span>
+
+        </div>
+
+        <h2>
+            A LITTLE<br>
+            <em>SOMETHING FOR YOU.</em>
+        </h2>
+
+        <button class="line-button" onclick="nextScene()">
+            OPEN
+            <span>→</span>
+        </button>
+
+        <button class="back-button" onclick="previousScene()">
+            ← BACK
+        </button>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     14 — MESSAGE
+===================================================== -->
+
+<main class="scene" id="scene14">
+
+    <div class="message-container">
+
+        <div class="section-number">13 / 16</div>
+
+        <div class="message-line"></div>
+
+        <p id="messageText"></p>
+
+        <button
+            class="line-button hidden"
+            id="messageContinue"
+            onclick="nextScene()"
+        >
+            ONE MORE THING
+            <span>→</span>
+        </button>
+
+    </div>
+
+</main>
+
+
+<!-- =====================================================
+     15 — FINAL CHECK
+===================================================== -->
+
+<main class="scene" id="scene15">
+
+    <div class="final-container">
+
+        <div class="section-number">14 / 16</div>
+
+        <!-- QUICK CHECK -->
+
+        <div id="quickCheck">
+
+            <div class="game-label">QUICK CHECK.</div>
+
+            <h2>
+                birthday wish<br>
+                <em>tahun ini?</em>
+            </h2>
+
+            <p class="game-description">
+                pilih yang paling kamu mau.
+            </p>
+
+            <div class="quiz-options">
+
+                <button onclick="birthdayWish(this)">
+                    <span>A</span>
+                    banyak uang
+                </button>
+
+                <button onclick="birthdayWish(this)">
+                    <span>B</span>
+                    banyak jalan-jalan
+                </button>
+
+                <button onclick="birthdayWish(this)">
+                    <span>C</span>
+                    hidup tenang
+                </button>
+
+                <button onclick="birthdayWish(this)">
+                    <span>D</span>
+                    semuanya, jelas.
+                </button>
+
+            </div>
+
+            <div class="game-feedback" id="wishFeedback"></div>
+
+        </div>
+
+
+        <!-- DEAL -->
+
+        <div id="dealScreen" class="hidden">
+
+            <div class="transition-small">
+    BEFORE YOU GO...
+</div>
+
+<h2>
+    satu hal yang<br>
+    harus dilakukan
+</h2>
+
+<p>
+    di umur yang baru:
+    <br>
+    <strong>lebih banyak senang-senang.</strong>
+</p>
+
+            <button
+                class="line-button"
+                onclick="finishBirthday()"
+            >
+                DEAL
+                <span>→</span>
+            </button>
+
+        </div>
+
+    </div>
+
+</main>
+
+<!-- =====================================================
+     16 — ENDING
+===================================================== -->
+
+<main class="scene" id="scene16">
+
+    <div class="ending-container">
+
+        <div class="ending-label">
+            ur birthday / COMPLETE
+        </div>
+
+        <div class="ending-number">
+            24.08
+        </div>
+
+        <h1>
+            Happy birthday,<br>
+            <em>beb.</em>
+        </h1>
+
+        <p>
+            Semoga sehat terus, panjang umur,
+            rezekinya lancar, dan semoga
+            tahun ini banyak hal baik yang datang.
+        </p>
+
+        <div class="signature">
+            — dari aku, orang spesial ekekekek
+        </div>
+
+        <small>
+            see you in the next chapter.
+        </small>
+
+    </div>
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>

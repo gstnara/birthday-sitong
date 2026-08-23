@@ -1,0 +1,2249 @@
+/* =========================================================
+   SITONG.EXE
+   CINEMATIC MOBILE STYLE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #f5f1eb;
+    --paper: #faf8f4;
+    --ink: #292726;
+    --muted: #817b75;
+    --line: #d8d0c7;
+    --accent: #9b6875;
+    --accent-light: #d9b8bd;
+    --dark: #373331;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "DM Mono", monospace;
+    overflow-x: hidden;
+}
+
+button {
+    font: inherit;
+    color: inherit;
+}
+
+.scene {
+    position: fixed;
+    inset: 0;
+    min-height: 100svh;
+    padding: 42px 22px 32px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(255,255,255,.8),
+            transparent 48%
+        ),
+        var(--bg);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translateY(12px);
+
+    transition:
+        opacity .6s ease,
+        transform .7s ease,
+        visibility .6s;
+}
+
+.scene.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.scene::before {
+    content: "";
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(80,70,65,.08);
+    pointer-events: none;
+}
+
+.section-number {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: #aaa29a;
+}
+
+.system-label,
+.game-label,
+.eyebrow,
+.bouquet-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+}
+
+.status-dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #79937e;
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+h1,
+h2 {
+    font-family: "Playfair Display", serif;
+    font-weight: 500;
+}
+
+h2 {
+    font-size: clamp(30px, 8vw, 48px);
+    line-height: .98;
+    letter-spacing: -.8px;
+}
+
+h2 em,
+h1 em {
+    color: var(--accent);
+    font-style: normal;
+}
+
+.subtext,
+.game-description {
+    max-width: 330px;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.8;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.line-button {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+
+    min-width: 130px;
+    padding: 12px 2px;
+
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--ink);
+
+    font-size: 9px;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition:
+        gap .3s ease,
+        color .3s ease;
+}
+
+.line-button:hover {
+    gap: 32px;
+    color: var(--accent);
+}
+
+.line-button:disabled {
+    opacity: .3;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   OPENING
+========================================================= */
+
+.opening {
+    width: min(100%, 520px);
+}
+
+.opening-title {
+    margin-top: 48px;
+}
+
+.opening-title > span {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--muted);
+}
+
+.opening-title h1 {
+    margin-top: 9px;
+    font-size: clamp(45px, 15vw, 85px);
+    line-height: .9;
+    letter-spacing: -3px;
+}
+
+.date-line {
+    margin-top: 13px;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--accent);
+}
+
+.terminal {
+    margin-top: 48px;
+    padding: 14px 0;
+
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+
+    min-height: 45px;
+
+    font-size: 9px;
+    color: var(--muted);
+}
+
+.prompt {
+    color: var(--accent);
+    margin-right: 8px;
+}
+
+.cursor {
+    display: inline-block;
+    width: 5px;
+    height: 11px;
+    margin-left: 3px;
+    background: var(--accent);
+    animation: blink 1s infinite;
+    vertical-align: middle;
+}
+
+.loading {
+    margin-top: 34px;
+}
+
+.loading-head {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    color: #99918a;
+}
+
+.loading-track {
+    height: 1px;
+    background: var(--line);
+    margin-top: 9px;
+}
+
+#loadingBar {
+    width: 0;
+    height: 100%;
+    background: var(--accent);
+}
+
+.opening .line-button {
+    margin-top: 38px;
+}
+
+.corner-label {
+    position: absolute;
+    bottom: 26px;
+    left: 28px;
+
+    font-size: 7px;
+    letter-spacing: 1.5px;
+    color: #aaa29a;
+}
+
+
+/* =========================================================
+   IDENTIFICATION
+========================================================= */
+
+.identification {
+    width: min(100%, 430px);
+}
+
+.identification h2 {
+    margin-top: 13px;
+}
+
+.identification .subtext {
+    margin-top: 16px;
+}
+
+.id-card {
+    position: relative;
+
+    margin-top: 30px;
+
+    height: 205px;
+    padding: 17px;
+
+    border: 1px solid #cfc6bc;
+    background: rgba(250,248,244,.8);
+
+    overflow: hidden;
+
+    box-shadow: 0 18px 50px rgba(50,40,35,.06);
+}
+
+.id-top {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 7px;
+    letter-spacing: 1.4px;
+    color: #a19a93;
+}
+
+.portrait-box {
+    position: absolute;
+
+    left: 17px;
+    bottom: 38px;
+
+    width: 105px;
+    height: 115px;
+
+    border: 1px solid #ddd5cc;
+    overflow: hidden;
+}
+
+.portrait-lines {
+    position: absolute;
+    inset: 0;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 8px,
+            rgba(130,110,100,.08) 9px
+        );
+}
+
+.portrait-silhouette {
+    position: absolute;
+
+    left: 50%;
+    top: 29px;
+
+    width: 29px;
+    height: 29px;
+
+    border: 1px solid #a99e96;
+    border-radius: 50%;
+
+    transform: translateX(-50%);
+}
+
+.portrait-silhouette::after {
+    content: "";
+    position: absolute;
+
+    width: 63px;
+    height: 52px;
+
+    left: 50%;
+    bottom: -67px;
+
+    border: 1px solid #a99e96;
+    border-bottom: 0;
+
+    border-radius: 45px 45px 0 0;
+
+    transform: translateX(-50%);
+}
+
+.id-details {
+    position: absolute;
+
+    left: 143px;
+    bottom: 42px;
+}
+
+.id-details > span,
+.id-meta span {
+    display: block;
+
+    font-size: 7px;
+    letter-spacing: 1.5px;
+    color: #aaa19a;
+}
+
+.id-details strong {
+    display: block;
+
+    margin-top: 7px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 27px;
+    font-weight: 500;
+}
+
+.id-meta {
+    margin-top: 18px;
+}
+
+.id-meta b {
+    font-size: 9px;
+    font-weight: 400;
+}
+
+.scan-status {
+    position: absolute;
+
+    left: 17px;
+    right: 17px;
+    bottom: 15px;
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding-top: 9px;
+    border-top: 1px solid #e1dad3;
+
+    font-size: 7px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+}
+
+.status-circle {
+    width: 6px;
+    height: 6px;
+
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+
+    animation: pulse 1.1s infinite;
+}
+
+.scan-beam {
+    position: absolute;
+    z-index: 3;
+
+    left: 0;
+    right: 0;
+    top: -2px;
+
+    height: 1px;
+
+    background: var(--accent);
+
+    box-shadow:
+        0 0 12px rgba(155,104,117,.8);
+
+    animation: scan 2.4s linear infinite;
+}
+
+.id-card.verified .scan-beam {
+    animation: none;
+    top: 100%;
+    opacity: 0;
+}
+
+.scan-message {
+    margin-top: 15px;
+
+    min-height: 15px;
+
+    font-size: 8px;
+    letter-spacing: 1.3px;
+    color: var(--accent);
+}
+
+.verification {
+    min-height: 22px;
+
+    margin-top: 5px;
+
+    font-size: 9px;
+    color: var(--muted);
+}
+
+.identification .line-button {
+    margin-top: 14px;
+}
+
+
+/* =========================================================
+   GAME CONTAINERS
+========================================================= */
+
+.game-container,
+.quiz-container,
+.memory-container,
+.birthday-container,
+.bouquet-container,
+.message-container,
+.final-container,
+.ending-container {
+    width: min(100%, 480px);
+    text-align: center;
+}
+
+.game-label {
+    margin-top: 5px;
+}
+
+.game-container h2,
+.quiz-container h2,
+.memory-container h2 {
+    margin-top: 15px;
+}
+
+.game-description {
+    margin: 14px auto 0;
+}
+
+
+/* =========================================================
+   MEMORY GAME
+========================================================= */
+
+.memory-grid {
+    width: min(100%, 330px);
+
+    margin: 26px auto 14px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.memory-card {
+    position: relative;
+
+    aspect-ratio: 1;
+
+    border: 1px solid var(--line);
+    background: #ebe5de;
+
+    cursor: pointer;
+
+    transform-style: preserve-3d;
+
+    transition: transform .45s ease;
+}
+
+.memory-card.flipped,
+.memory-card.matched {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    backface-visibility: hidden;
+}
+
+.card-front {
+    background: #eee8e1;
+
+    font-family: "Playfair Display", serif;
+    font-size: 19px;
+    color: #b5aaa0;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+
+    background: #faf8f4;
+
+    font-size: 25px;
+}
+
+.memory-card.matched .card-back {
+    box-shadow:
+        inset 0 0 0 1px rgba(155,104,117,.4);
+}
+
+.game-feedback {
+    min-height: 35px;
+
+    margin-top: 14px;
+
+    font-size: 8px;
+    line-height: 1.8;
+    letter-spacing: .5px;
+    color: var(--muted);
+
+    white-space: pre-line;
+}
+
+
+/* =========================================================
+   DIFFERENCE
+========================================================= */
+
+.difference-board {
+    width: min(100%, 380px);
+
+    margin: 25px auto 14px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.difference-picture {
+    position: relative;
+
+    aspect-ratio: 1;
+
+    background: #e9e2da;
+    border: 1px solid var(--line);
+
+    overflow: hidden;
+}
+
+.scene-art {
+    position: absolute;
+    inset: 0;
+}
+
+.art-moon {
+    position: absolute;
+
+    top: 15%;
+    right: 16%;
+
+    width: 25px;
+    height: 25px;
+
+    border: 1px solid #9b8f87;
+    border-radius: 50%;
+}
+
+.art-cup {
+    position: absolute;
+
+    left: 18%;
+    bottom: 20%;
+
+    width: 30px;
+    height: 25px;
+
+    border: 1px solid #9b8f87;
+    border-radius: 3px 3px 8px 8px;
+}
+
+.art-cup::after {
+    content: "";
+
+    position: absolute;
+
+    right: -9px;
+    top: 5px;
+
+    width: 9px;
+    height: 12px;
+
+    border: 1px solid #9b8f87;
+    border-left: 0;
+
+    border-radius: 0 7px 7px 0;
+}
+
+.art-book {
+    position: absolute;
+
+    right: 16%;
+    bottom: 17%;
+
+    width: 42px;
+    height: 25px;
+
+    border: 1px solid #9b8f87;
+    transform: rotate(-7deg);
+}
+
+.art-flower {
+    position: absolute;
+
+    left: 52%;
+    bottom: 17%;
+
+    width: 15px;
+    height: 15px;
+
+    border: 1px solid #9b8f87;
+    border-radius: 50%;
+}
+
+.art-flower::after {
+    content: "";
+
+    position: absolute;
+
+    width: 1px;
+    height: 35px;
+
+    background: #9b8f87;
+
+    left: 50%;
+    top: 14px;
+}
+
+.art-star {
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    background: #9b8f87;
+
+    transform: rotate(45deg);
+}
+
+.star-a {
+    top: 34%;
+    left: 27%;
+}
+
+.star-b {
+    top: 22%;
+    left: 70%;
+}
+
+.diff-one {
+    transform: translateX(6px);
+}
+
+.diff-two {
+    transform: rotate(7deg);
+}
+
+.diff-three {
+    transform: scale(.7);
+}
+
+.difference-hints {
+    display: flex;
+    justify-content: space-between;
+
+    width: min(100%, 380px);
+    margin: 0 auto;
+
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    color: #9c938b;
+}
+
+.difference-hints b {
+    color: var(--accent);
+    font-weight: 400;
+}
+
+.difference-options {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+
+    margin-top: 13px;
+}
+
+.difference-options button {
+    width: 28px;
+    height: 28px;
+
+    border: 1px solid var(--line);
+    background: transparent;
+
+    cursor: pointer;
+    font-size: 9px;
+}
+
+.difference-options button.selected {
+    background: var(--accent);
+    color: white;
+}
+
+
+/* =========================================================
+   SCRAMBLE
+========================================================= */
+
+.scramble-title {
+    margin-top: 28px;
+
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    color: #9c938b;
+}
+
+.scramble-title strong {
+    display: block;
+
+    margin-top: 8px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 24px;
+    color: var(--ink);
+    letter-spacing: 2px;
+}
+
+.scramble-slots {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+
+    margin-top: 25px;
+    min-height: 44px;
+}
+
+.scramble-slot {
+    width: 38px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-bottom: 1px solid var(--ink);
+
+    font-family: "Playfair Display", serif;
+    font-size: 19px;
+}
+
+.scramble-letters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 7px;
+
+    max-width: 340px;
+    margin: 25px auto 0;
+}
+
+.letter-button {
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid var(--line);
+    background: var(--paper);
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.letter-button.used {
+    opacity: .25;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   OBJECT SEARCH
+========================================================= */
+
+.target-box {
+    margin: 23px auto 15px;
+
+    width: 150px;
+    padding: 9px;
+
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.target-box span {
+    display: block;
+
+    font-size: 7px;
+    letter-spacing: 1.5px;
+    color: #9b938b;
+}
+
+.target-box strong {
+    display: block;
+
+    margin-top: 5px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.object-arena {
+    position: relative;
+
+    width: min(100%, 350px);
+    height: 245px;
+
+    margin: auto;
+
+    border: 1px solid var(--line);
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            #fbf8f3,
+            #eae3db
+        );
+
+    overflow: hidden;
+}
+
+.object {
+    position: absolute;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(100,90,80,.18);
+    background: rgba(250,248,244,.8);
+
+    cursor: pointer;
+
+    font-family: "Playfair Display", serif;
+    font-size: 21px;
+
+    transition: transform .2s;
+}
+
+.object:hover {
+    transform: scale(1.12);
+}
+
+.object.correct-object {
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(155,104,117,.25);
+}
+
+
+/* =========================================================
+   PASSWORD
+========================================================= */
+
+.lock-display {
+    margin: 25px auto 18px;
+}
+
+.lock-display span {
+    font-size: 7px;
+    letter-spacing: 2px;
+    color: #9c938b;
+}
+
+#codeDisplay {
+    margin-top: 12px;
+
+    font-family: "DM Mono", monospace;
+    font-size: 19px;
+    letter-spacing: 7px;
+}
+
+.keypad {
+    width: 180px;
+
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+}
+
+.keypad button {
+    height: 42px;
+
+    border: 1px solid var(--line);
+    background: var(--paper);
+
+    cursor: pointer;
+
+    font-size: 10px;
+
+    transition: .2s;
+}
+
+.keypad button:hover {
+    background: #eee7df;
+}
+
+.empty-key {
+    visibility: hidden;
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    width: min(100%, 380px);
+
+    margin: 26px auto 0;
+}
+
+.quiz-options button {
+    min-height: 48px;
+
+    padding: 10px 13px;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    text-align: left;
+
+    border: 1px solid var(--line);
+    background: rgba(250,248,244,.7);
+
+    cursor: pointer;
+
+    font-size: 9px;
+
+    transition: .25s;
+}
+
+.quiz-options button span {
+    width: 22px;
+    height: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--line);
+
+    color: var(--accent);
+
+    font-size: 8px;
+}
+
+.quiz-options button:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+}
+
+.quiz-options button.correct {
+    border-color: #829685;
+    background: #eef2ed;
+}
+
+.quiz-options button.wrong {
+    animation: shake .35s;
+}
+
+
+/* =========================================================
+   QUIZ INTRO
+========================================================= */
+
+.transition-screen {
+    width: min(100%, 400px);
+    text-align: center;
+}
+
+.transition-line {
+    width: 50px;
+    height: 1px;
+
+    margin: 0 auto 25px;
+
+    background: var(--accent);
+}
+
+.transition-small {
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: #9c938b;
+}
+
+.transition-screen h2 {
+    margin-top: 18px;
+    font-size: 38px;
+}
+
+.transition-screen p {
+    margin: 18px auto 28px;
+
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   CAKE
+========================================================= */
+
+.birthday-container {
+    position: relative;
+}
+
+.date-reveal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    color: var(--accent);
+}
+
+.date-reveal span {
+    font-family: "Playfair Display", serif;
+    font-size: 42px;
+}
+
+.date-reveal i {
+    font-family: "Playfair Display", serif;
+    font-size: 28px;
+    font-style: normal;
+    opacity: .5;
+}
+
+.birthday-label {
+    margin-top: 7px;
+
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--muted);
+}
+
+.birthday-container h2 {
+    margin-top: 8px;
+    font-size: 35px;
+}
+
+.cake-instruction {
+    margin-top: 20px;
+
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+
+    animation: softPulse 1.8s infinite;
+}
+
+.cake-wrapper {
+    position: relative;
+
+    width: 230px;
+    height: 215px;
+
+    margin: 16px auto 0;
+
+    cursor: pointer;
+
+    animation: cakeEntrance 1s ease both;
+}
+
+.cake-tier {
+    position: absolute;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border: 1px solid #aa7b81;
+
+    background:
+        linear-gradient(
+            90deg,
+            #d7b4b8,
+            #edd9d6,
+            #d0a6ad
+        );
+
+    box-shadow:
+        inset 0 -7px 0 rgba(100,60,65,.08);
+}
+
+.tier-bottom {
+    bottom: 28px;
+
+    width: 185px;
+    height: 62px;
+
+    border-radius: 6px 6px 10px 10px;
+}
+
+.tier-middle {
+    bottom: 83px;
+
+    width: 145px;
+    height: 55px;
+
+    border-radius: 6px 6px 9px 9px;
+}
+
+.tier-top {
+    bottom: 133px;
+
+    width: 103px;
+    height: 49px;
+
+    border-radius: 6px 6px 8px 8px;
+}
+
+.icing {
+    position: absolute;
+
+    top: -5px;
+    left: -1px;
+    right: -1px;
+
+    height: 12px;
+
+    background: #f5ebe6;
+
+    border: 1px solid #cda9aa;
+
+    border-radius: 50%;
+}
+
+.cake-plate {
+    position: absolute;
+
+    left: 50%;
+    bottom: 19px;
+
+    width: 205px;
+    height: 9px;
+
+    transform: translateX(-50%);
+
+    border: 1px solid #bdb0a7;
+    border-radius: 50%;
+}
+
+.candle {
+    position: absolute;
+
+    z-index: 4;
+
+    left: 50%;
+    bottom: 179px;
+
+    width: 7px;
+    height: 30px;
+
+    transform: translateX(-50%);
+
+    background: #f1e5dc;
+
+    border: 1px solid #ad8888;
+}
+
+.flame {
+    position: absolute;
+
+    z-index: 5;
+
+    left: 50%;
+    bottom: 206px;
+
+    width: 13px;
+    height: 19px;
+
+    transform:
+        translateX(-50%)
+        scale(0);
+
+    opacity: 0;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 70%,
+            #fff5ca 0 28%,
+            #d99462 42%,
+            transparent 70%
+        );
+
+    border-radius: 50% 50% 50% 50%;
+
+    filter: drop-shadow(
+        0 0 8px rgba(226,164,99,.8)
+    );
+
+    transition:
+        transform .4s cubic-bezier(.2,1.5,.4,1),
+        opacity .3s;
+}
+
+.flame-inner {
+    position: absolute;
+
+    left: 50%;
+    bottom: 2px;
+
+    width: 5px;
+    height: 8px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: #fff;
+}
+
+.flame-glow {
+    position: absolute;
+
+    z-index: 3;
+
+    left: 50%;
+    bottom: 191px;
+
+    width: 70px;
+    height: 70px;
+
+    transform: translateX(-50%) scale(0);
+
+    border-radius: 50%;
+
+    background: rgba(235,180,112,.15);
+
+    filter: blur(8px);
+
+    transition: transform .5s ease;
+}
+
+.cake-wrapper.lit .flame {
+    transform:
+        translateX(-50%)
+        scale(1);
+
+    opacity: 1;
+
+    animation: flameDance .75s ease-in-out infinite alternate;
+}
+
+.cake-wrapper.lit .flame-glow {
+    transform: translateX(-50%) scale(1);
+    animation: glowPulse 1.2s infinite;
+}
+
+.cake-wrapper.extinguished .flame {
+    animation: none;
+    transform:
+        translateX(-50%)
+        scale(.2);
+
+    opacity: 0;
+}
+
+.wish-text {
+    min-height: 20px;
+
+    margin-top: 12px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 16px;
+    color: var(--accent);
+
+    opacity: 0;
+    transform: translateY(8px);
+
+    transition: .8s ease;
+}
+
+.cake-wrapper.lit ~ .wish-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.birthday-container .line-button {
+    margin-top: 18px;
+}
+
+
+/* =========================================================
+   MEMORY PHOTOS
+========================================================= */
+
+.memory-container {
+    overflow-y: auto;
+    max-height: 100%;
+}
+.photo-grid {
+    width: min(100%, 330px);
+
+    margin: 24px auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.photo-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 6px;
+
+    text-align: left;
+
+    box-shadow: 0 12px 25px rgba(50,40,35,.05);
+}
+
+.photo-placeholder {
+    aspect-ratio: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ddd4ca,
+            #eee8e1
+        );
+
+    color: #8e857d;
+
+    font-size: 7px;
+    letter-spacing: 1.5px;
+
+    overflow: hidden;
+}
+
+.photo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-card small {
+    display: block;
+
+    margin-top: 7px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 9px;
+    color: #716963;
+}
+
+/* =========================================================
+   FLOWER SCENE FIX
+========================================================= */
+
+#scene13 {
+    background:
+        radial-gradient(
+            circle at 50% 32%,
+            rgba(255,255,255,.95),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 20% 75%,
+            rgba(217,184,189,.16),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 82% 70%,
+            rgba(117,135,115,.08),
+            transparent 25%
+        ),
+        var(--bg);
+}
+
+.flower-container {
+    width: min(100%, 430px);
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.flower-container .bouquet-label {
+    margin-bottom: 4px;
+    color: var(--accent);
+}
+
+.flower-container h2 {
+    margin: 4px auto 0;
+    max-width: 360px;
+
+    font-size: clamp(31px, 8.5vw, 46px);
+    line-height: .98;
+    letter-spacing: -.045em;
+}
+
+.flower-animation {
+    position: relative;
+
+    width: 260px;
+    height: 310px;
+
+    margin: 6px auto -2px;
+
+    isolation: isolate;
+
+    animation:
+        flowerReveal 1.1s cubic-bezier(.22,.61,.36,1)
+        both;
+}
+
+
+/* =========================
+   FLOWER HEAD
+========================= */
+
+.flower-head {
+    position: absolute;
+
+    left: 50%;
+    top: 18px;
+
+    width: 132px;
+    height: 132px;
+
+    transform: translateX(-50%);
+    transform-origin: center;
+
+    z-index: 3;
+
+    animation:
+        flowerSway 4s ease-in-out infinite;
+}
+
+
+/* =========================
+   PETALS
+========================= */
+
+.petal {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 54px;
+    height: 78px;
+
+    transform-origin: 50% 100%;
+
+    border-radius: 54% 54% 48% 48%;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 20%,
+            rgba(255,255,255,.72) 0 10%,
+            rgba(255,232,235,.28) 28%,
+            transparent 48%
+        ),
+        linear-gradient(
+            180deg,
+            #f1c5ca 0%,
+            #e7adb5 55%,
+            #d7909d 100%
+        );
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,.65),
+        0 5px 12px rgba(115,70,78,.11);
+}
+
+
+/* Posisi kelopak */
+
+.p1 {
+    transform:
+        translate(-50%, -96%)
+        rotate(0deg);
+
+    z-index: 2;
+}
+
+.p2 {
+    transform:
+        translate(-50%, -96%)
+        rotate(60deg);
+
+    z-index: 1;
+}
+
+.p3 {
+    transform:
+        translate(-50%, -96%)
+        rotate(120deg);
+
+    z-index: 1;
+}
+
+.p4 {
+    transform:
+        translate(-50%, -96%)
+        rotate(180deg);
+
+    z-index: 1;
+}
+
+.p5 {
+    transform:
+        translate(-50%, -96%)
+        rotate(240deg);
+
+    z-index: 1;
+}
+
+.p6 {
+    transform:
+        translate(-50%, -96%)
+        rotate(300deg);
+
+    z-index: 1;
+}
+
+
+/* =========================
+   FLOWER CENTER
+========================= */
+
+.flower-center {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 42px;
+    height: 42px;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 6;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 40% 35%,
+            #fff1c8 0 7%,
+            #e7bd80 8% 23%,
+            #c9905e 24% 67%,
+            #aa704d 68% 100%
+        );
+
+    border: 2px solid rgba(255,241,212,.8);
+
+    box-shadow:
+        inset -4px -5px 8px rgba(111,69,44,.16),
+        0 5px 13px rgba(104,67,45,.16);
+}
+
+
+/* =========================
+   STEM
+========================= */
+
+.flower-stem {
+    position: absolute;
+
+    left: 50%;
+    top: 126px;
+
+    width: 6px;
+    height: 152px;
+
+    transform:
+        translateX(-50%)
+        rotate(2deg);
+
+    transform-origin: top;
+
+    z-index: 1;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #66755f 0%,
+            #87997c 48%,
+            #53624e 100%
+        );
+
+    box-shadow:
+        1px 0 0 rgba(255,255,255,.28);
+}
+
+
+/* =========================
+   LEAVES
+========================= */
+
+.flower-leaf {
+    position: absolute;
+
+    z-index: 2;
+
+    width: 68px;
+    height: 32px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a9b7a2 0%,
+            #879c7d 55%,
+            #66785f 100%
+        );
+
+    border: 1px solid rgba(83,98,78,.22);
+
+    box-shadow:
+        inset 5px 3px 7px rgba(255,255,255,.2),
+        0 4px 8px rgba(70,85,65,.08);
+}
+
+.flower-leaf::after {
+    content: "";
+
+    position: absolute;
+
+    left: 8px;
+    top: 50%;
+
+    width: 48px;
+    height: 1px;
+
+    background: rgba(75,92,70,.38);
+
+    transform: rotate(-17deg);
+    transform-origin: left center;
+}
+
+.leaf-left {
+    left: 48px;
+    top: 205px;
+
+    border-radius: 100% 0 100% 0;
+
+    transform: rotate(-28deg);
+}
+
+.leaf-right {
+    right: 42px;
+    top: 230px;
+
+    border-radius: 0 100% 0 100%;
+
+    transform:
+        rotate(22deg)
+        scale(.88);
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.flower-container .line-button {
+    margin-top: 22px;
+}
+
+.flower-container .back-button {
+    margin-top: 18px;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes flowerReveal {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(26px)
+            scale(.88);
+    }
+
+    65% {
+        opacity: 1;
+
+        transform:
+            translateY(-3px)
+            scale(1.02);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+@keyframes flowerSway {
+
+    0%,
+    100% {
+        transform:
+            translateX(-50%)
+            rotate(-2deg);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            rotate(2deg);
+    }
+}
+
+
+/* =========================
+   SMALL HEIGHT SCREEN
+========================= */
+
+@media (max-height: 720px) {
+
+    .flower-animation {
+        transform: scale(.88);
+        margin-top: -12px;
+        margin-bottom: -20px;
+    }
+
+    .flower-container .line-button {
+        margin-top: 14px;
+    }
+
+    .flower-container h2 {
+        font-size: clamp(29px, 8vw, 40px);
+    }
+}
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message-container {
+    text-align: left;
+}
+
+.message-line {
+    width: 35px;
+    height: 1px;
+
+    margin-bottom: 28px;
+
+    background: var(--accent);
+}
+
+#messageText {
+    max-width: 390px;
+
+    min-height: 160px;
+
+    white-space: pre-line;
+
+    font-family: "Playfair Display", serif;
+    font-size: clamp(17px, 4.5vw, 23px);
+    line-height: 1.45;
+
+    color: #514a46;
+}
+
+.message-container .line-button {
+    margin-top: 15px;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final-container h2 {
+    margin-top: 17px;
+    font-size: clamp(27px, 7vw, 42px);
+}
+
+.final-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+
+    margin-top: 30px;
+}
+
+.final-buttons button {
+    padding: 13px 18px;
+
+    border: 1px solid var(--line);
+    background: var(--paper);
+
+    cursor: pointer;
+
+    font-size: 9px;
+
+    transition: .25s;
+}
+
+.final-buttons button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   ENDING
+========================================================= */
+
+.ending-container {
+    text-align: center;
+}
+
+.ending-label {
+    font-size: 8px;
+    letter-spacing: 2px;
+    color: var(--muted);
+}
+
+.ending-number {
+    margin-top: 28px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 16px;
+    color: var(--accent);
+
+    letter-spacing: 5px;
+}
+
+.ending-container h1 {
+    margin-top: 18px;
+
+    font-size: clamp(42px, 12vw, 70px);
+    line-height: 1;
+
+    letter-spacing: -2px;
+}
+
+.ending-container p {
+    max-width: 350px;
+
+    margin: 25px auto 0;
+
+    font-size: 10px;
+    line-height: 2;
+
+    color: var(--muted);
+}
+
+.signature {
+    margin-top: 25px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 13px;
+    color: #655c56;
+}
+
+.ending-container small {
+    display: block;
+
+    margin-top: 38px;
+
+    font-size: 7px;
+    letter-spacing: 1.5px;
+    color: #aaa19a;
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+.confetti {
+    position: fixed;
+    z-index: 999;
+
+    top: -10px;
+
+    width: 4px;
+    height: 9px;
+
+    pointer-events: none;
+
+    animation:
+        confettiFall 3.5s linear forwards;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+    50% {
+        opacity: .25;
+        transform: scale(.7);
+    }
+}
+
+@keyframes scan {
+    from {
+        top: 0;
+    }
+
+    to {
+        top: 100%;
+    }
+}
+
+@keyframes shake {
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes softPulse {
+    50% {
+        opacity: .4;
+    }
+}
+
+@keyframes cakeEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes flameDance {
+    from {
+        transform:
+            translateX(-50%)
+            rotate(-4deg)
+            scale(1);
+    }
+
+    to {
+        transform:
+            translateX(-50%)
+            rotate(4deg)
+            scale(1.08);
+    }
+}
+
+@keyframes glowPulse {
+    50% {
+        opacity: .55;
+        transform: translateX(-50%) scale(1.15);
+    }
+}
+
+@keyframes bouquetAppear {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes confettiFall {
+    to {
+        transform:
+            translateY(110vh)
+            rotate(500deg);
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .scene {
+        padding: 38px 18px 25px;
+    }
+
+    .scene::before {
+        inset: 12px;
+    }
+
+    .section-number {
+        top: 20px;
+        right: 20px;
+        font-size: 8px;
+    }
+
+    h2 {
+        font-size: 31px;
+    }
+
+    .opening-title h1 {
+        font-size: 55px;
+    }
+
+    .terminal {
+        margin-top: 38px;
+    }
+
+    .id-card {
+        height: 195px;
+    }
+
+    .portrait-box {
+        width: 90px;
+        height: 105px;
+    }
+
+    .id-details {
+        left: 125px;
+    }
+
+    .id-details strong {
+        font-size: 23px;
+    }
+
+    .memory-grid {
+        width: min(100%, 310px);
+    }
+
+    .object-arena {
+        height: 220px;
+    }
+
+    .cake-wrapper {
+        transform: scale(.9);
+        margin-top: 8px;
+        margin-bottom: -10px;
+    }
+
+    .date-reveal span {
+        font-size: 36px;
+    }
+
+    .photo-grid {
+    width: min(100%, 300px);
+    margin-top: 18px;
+    gap: 7px;
+}
+
+    #messageText {
+        min-height: 190px;
+        font-size: 20px;
+    }
+}
+/* =========================================================
+   FINAL POSITION FIX
+========================================================= */
+
+#scene15 #quickCheck {
+    transform: translateY(20px);
+}
+
+#scene15 #dealScreen {
+    transform: translateY(-70px);
+}
+
+.back-button {
+    margin-top: 18px;
+    background: transparent;
+    border: none;
+    font-family: "DM Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #777;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.back-button:hover {
+    color: #9b6875;
+}
+
+/* =========================================
+   FINAL TYPOGRAPHY FIX
+   ========================================= */
+
+/* Semua teks umum tetap pakai DM Mono */
+body,
+button,
+input,
+textarea,
+.system-label,
+.game-label,
+.eyebrow,
+.bouquet-label,
+.section-number,
+.transition-small,
+.line-button,
+.back-button {
+    font-family: "DM Mono", monospace;
+    font-style: normal;
+}
+
+/* Heading utama */
+h1,
+h2 {
+    font-family: "Playfair Display", serif;
+    font-style: normal;
+    font-weight: 500;
+}
+
+/* HANYA teks yang memang dibungkus <em> yang miring */
+h1 em,
+h2 em {
+    font-style: italic;
+    font-weight: 400;
+}
+
