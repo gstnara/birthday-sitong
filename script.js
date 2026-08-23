@@ -139,8 +139,6 @@ window.addEventListener("load", () => {
 
 function startExperience() {
 
-    startMusic();
-
     showScene(2);
 
     startIdentification();
@@ -901,7 +899,7 @@ function lightCake() {
 
 const messageLines = [
 
-    "sebenernya aku jarang ngomong beginian...",
+    "sebenernya aku jarang ngomong beginian hehe...",
 
     "tapi makasih ya, beb.",
 
@@ -911,7 +909,7 @@ const messageLines = [
 
     "tapi setiap ketemu, rasanya tetap kayak ga pernah kehilangan cerita.",
 
-    "semoga di umur yang baru ini banyak hal baik yang datang ke kamu, muaybe aku ga cukup sering bilang ini, tp aku bnr bnr bnr bnr seneng bgt punya km in my life ^_^"
+    "semoga di umur yang baru ini banyak hal baik yang datang ke kamu, maybe aku ga cukup sering bilang ini, tp aku bnr bnr bnr bnr seneng bgt punya km in my life ^_^"
 
 ];
 
