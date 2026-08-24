@@ -144,7 +144,6 @@ function startExperience() {
     startIdentification();
 }
 
-
 /* =========================================================
    IDENTIFICATION
 ========================================================= */
@@ -176,7 +175,7 @@ function startIdentification() {
     const messages = [
         "ANALYZING PERSONAL DATA",
         "MATCHING BIRTHDAY RECORD",
-        "CHECKING DATE: 24.08",
+        "CHECKING DATE: 25.08",
         "VERIFYING SUBJECT",
         "PERSON IDENTIFIED"
     ];
@@ -500,14 +499,14 @@ function selectLetter(button, letter) {
 
 const objectTypes = [
     "FLOWER",
-    "CAMERA",
+    "KOTAK",
     "MOON",
     "STAR"
 ];
 
 const objectSymbols = {
     FLOWER: "✿",
-    CAMERA: "□",
+    KOTAK: "□",
     MOON: "◐",
     STAR: "✦"
 };
@@ -733,7 +732,7 @@ function checkCode() {
     const feedback =
         document.getElementById("codeFeedback");
 
-    if (enteredCode === "2408") {
+    if (enteredCode === "2508") {
 
         feedback.textContent =
             "ACCESS GRANTED ✓";
