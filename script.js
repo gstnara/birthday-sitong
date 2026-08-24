@@ -150,7 +150,6 @@ function startExperience() {
 
 let identificationStarted = false;
 
-
 function startIdentification() {
 
     if (identificationStarted) return;
@@ -201,12 +200,13 @@ function startIdentification() {
             verification.textContent =
                 "Identity confirmed.";
 
+            // MUNCULKAN TEKS PENGANTAR & TOMBOL MULAI
+            document.getElementById("noticeText").classList.remove("hidden");
             continueButton.classList.remove("hidden");
         }
 
     }, 650);
 }
-
 
 /* =========================================================
    GAME 1 — MEMORY MATCH
